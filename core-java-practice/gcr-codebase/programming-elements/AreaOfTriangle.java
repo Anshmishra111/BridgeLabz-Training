@@ -8,7 +8,7 @@ public class AreaOfTriangle {
         System.out.print("Enter height in inches: ");
         h = sc.nextDouble();
         double aInches = 0.5 * b * h;
-        double aCm = areaInches * 6.4516;
+        double aCm = aInches * 6.4516;
         System.out.println("The area of the triangle is " + aInches + " square inches and " + aCm + " square centimeters");
     }
 }

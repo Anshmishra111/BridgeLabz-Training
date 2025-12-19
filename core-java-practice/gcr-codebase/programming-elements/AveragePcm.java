@@ -1,5 +1,5 @@
-Class AveragePcm {
-    puclic static void main(String[] args) {
+class AveragePcm {
+    public static void main(String[] args) {
         int maths = 94;
         int physics = 95;
         int chemistry = 96;

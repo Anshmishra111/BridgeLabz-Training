@@ -1,8 +1,20 @@
-#palindrome number
-class Solution{
-    public boolean isp(int x){
-        if(x < 0) return false;
-        String s = String.valueOf(x);
-        return s.equals(new StringBuilder(s).reverse().toString());
+public class palindrome {
+   
+    public static void main(String[] args) {
+        int num = 121;
+        int original = num;
+        int reverse = 0;
+
+        while (num != 0) {
+            reverse = reverse * 10 + num % 10;
+            num /= 10;
+        }
+
+        if (original == reverse)
+            System.out.println("Palindrome number");
+        else
+            System.out.println("Not a palindrome number");
     }
 }
+
+    
