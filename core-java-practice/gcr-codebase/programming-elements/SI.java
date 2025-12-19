@@ -10,5 +10,6 @@ class SI {
         double time = sc.nextDouble();
         double si = (principal * rate * time) / 100;
         System.out.println("Simple Interest = " + si);
+        sc.close();
     }
 }

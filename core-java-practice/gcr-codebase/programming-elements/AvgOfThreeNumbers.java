@@ -10,5 +10,6 @@ class AvgOfThreeNumbers {
         double z = sc.nextDouble();
         double average = (x+y+z) / 3;
         System.out.println("Average = " + average);
+        sc.close();
     }
 }

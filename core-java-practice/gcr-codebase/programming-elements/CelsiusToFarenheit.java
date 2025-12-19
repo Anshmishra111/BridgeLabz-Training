@@ -5,5 +5,6 @@ class CelsiusToFarenheit {
         double cel = sc.nextDouble();
         double fahren = (cel * 9 / 5) + 32;
         System.out.println("Fahrenheit = " + fahren);
+        sc.close();
     }
 }

@@ -6,5 +6,6 @@ class KmTMil{
         double km = sc.nextDouble();
         double miles = km * 0.621371;
         System.out.println("Distance in miles = " + miles);
+        sc.close();
     }
 }

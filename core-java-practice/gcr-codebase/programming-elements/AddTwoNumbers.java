@@ -7,5 +7,6 @@ class AdTwoNumbers {
         
         int b = sc.nextInt();
         System.out.println("Sum = " + (a + b));
+        sc.close();
     }
 }

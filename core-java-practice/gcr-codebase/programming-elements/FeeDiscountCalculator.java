@@ -11,5 +11,6 @@ public class FeeDiscountCalculator {
         double disc = (fee * discPercent)/100;
         double finalFee = fee-disc;
         System.out.println("The discount amount is INR " + disc +" and final discounted fee is INR " + finalFee);
+        sc.close();
    }
 }

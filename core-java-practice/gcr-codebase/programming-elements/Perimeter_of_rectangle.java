@@ -13,5 +13,6 @@ class PerOfRect {
 
         double perimeter = 2 * (length + width);
         System.out.println("Perimeter of Rectangle = " + perimeter);
+        sc.close();
     }
 }

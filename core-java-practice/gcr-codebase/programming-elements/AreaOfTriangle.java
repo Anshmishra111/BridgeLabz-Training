@@ -10,5 +10,6 @@ public class AreaOfTriangle {
         double aInches = 0.5 * b * h;
         double aCm = aInches * 6.4516;
         System.out.println("The area of the triangle is " + aInches + " square inches and " + aCm + " square centimeters");
+        sc.close();
     }
 }

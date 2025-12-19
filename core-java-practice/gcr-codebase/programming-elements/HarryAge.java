@@ -5,7 +5,7 @@ class HarryAge {
 
         int currentYear = 2024;
 
-        int age = currenttYear - birthYear;
+        int age = currentYear - birthYear;
 
         System.out.println("Harry's age in 2024 is " + age);
     }

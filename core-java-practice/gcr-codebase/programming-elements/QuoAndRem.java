@@ -10,5 +10,6 @@ public class QuoAndRem {
         int quo = num1 / num2;
         int rem= num1 % num2;
         System.out.println("The Quotient is " + quo + " and Reminder is " + rem + " of two number " + num1 + " and " + num2);
+        sc.close();
     }
 }
