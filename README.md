@@ -13,3 +13,4 @@ This log documents the daily progress of tasks completed during the BridgeLabz t
 | 22 Dec 2025       | Solved and submitted **Level 1 and 2** problems in **String**.  | [Strings](https://github.com/Anshmishra111/BridgeLabz-Training/tree/core-java-practice/core-java-practice/gcr-codebase/string) 
 | 25 Dec 2025       | Solved and submitted **Level 1, 2 and 3** problems in **Method**.  | [Strings](https://github.com/Anshmishra111/BridgeLabz-Training/tree/core-java-practice/core-java-practice/gcr-codebase/method)
 | 26 Dec 2025       | Solved and submitted extra problems in **String**.  | [Extras](https://github.com/Anshmishra111/BridgeLabz-Training/tree/core-java-practice/core-java-practice/gcr-codebase/extras) 
+| 28 Dec 2025       | Solved and submitted extra problems in **Extras-Built-in-function**.  | [Built-in-functions](https://github.com/Anshmishra111/BridgeLabz-Training/tree/core-java-practice/core-java-practice/gcr-codebase/built-in-functions) 
