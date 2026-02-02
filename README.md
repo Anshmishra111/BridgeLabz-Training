@@ -39,5 +39,4 @@ This log documents the daily progress of tasks completed during the BridgeLabz t
 | 31 Jan 2026       | Solved and submitted  problems in **Flip KeyLogical Problem**.  | [Scenario Based Questions](https://github.com/Anshmishra111/BridgeLabz-Training/tree/core-java-practice/core-java-practice/scenario-based)
 | 31 Jan 2026       | Solved and submitted  problems in **Scenario Based Questions**.  | [Scenario Based Questions](https://github.com/Anshmishra111/BridgeLabz-Training/tree/dsa-practice/dsa-practice/scenario-based)
 | 30 Jan 2026       | Solved and submitted  problems in **Regex**.  | [Regex](https://github.com/Anshmishra111/BridgeLabz-Training/tree/collection-practice/collection-practice/gcr-codebase/regex)
-| 31 Jan 2026       | Solved and submitted  problems in **Junit**.  | [Junit](https://github.com/Anshmishra111/BridgeLabz-Training/tree/collection-practice/collection-practice/gcr-codebase/junit
-)
+| 31 Jan 2026       | Solved and submitted  problems in **Junit**.  | [Junit](https://github.com/Anshmishra111/BridgeLabz-Training/tree/collection-practice/collection-practice/gcr-codebase/junit)
