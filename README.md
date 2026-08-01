@@ -1,64 +1,175 @@
-# BridgeLabz-Training
-This log documents the daily progress of tasks completed during the BridgeLabz training program, as recorded in the repository’s README. Tasks are grouped by week with thematic headings, detailing the work done on each date.
+# 📘 Day 1 - DBMS Fundamentals & RDBMS Basics
+
+## 📌 Overview
+
+Day 1 focused on understanding the fundamentals of Database Management Systems (DBMS), Relational Database Management Systems (RDBMS), and MySQL. The session covered the theoretical foundations of databases along with hands-on SQL practice by creating a Health Clinic Management database.
 
 ---
 
-| Date | Work Done | Reference |
-|----------|----------|----------|
-| 16 Dec 2025     | Installed and set up the **Eclipse IDE**.<br>Solved and submitted **LeetCode Problems**.  | [LeetCode Problems](https://github.com/Anshmishra111/BridgeLabz-Training/tree/core-java-practice/core-java-practice/leetcode-codebase)     |
-| 17 Dec 2025       | Solved and submitted basic practice problems in **Programming Elements**.  | [Practice Elements (Programming Elements)](https://github.com/Anshmishra111/BridgeLabz-Training/tree/core-java-practice/core-java-practice/gcr-codebase/programming-elements) |
-| 18 Dec 2025       | Solved and submitted **Level 1 and 2** problems of **Java Fundamentals** in **Programming Elements**.  | [Java Fundamental Problems (Programming Elements)](https://github.com/Anshmishra111/BridgeLabz-Training/tree/core-java-practice/core-java-practice/gcr-codebase/programming-elements) |
-| 19 Dec 2025       | Solved and submitted **Level 1, 2 and 3** problems in **Control Flows**.  | [Control Flows Problems](https://github.com/Anshmishra111/BridgeLabz-Training/tree/core-java-practice/core-java-practice/gcr-codebase/control-flow) |
-| 20 Dec 2025       | Solved and submitted **Level 1 and 2** problems in **Arrays**<br>Solved and submitted **Scenario-Based Problems**.  | [Arrays](https://github.com/Anshmishra111/BridgeLabz-Training/tree/core-java-practice/core-java-practice/gcr-codebase/arrays)<br>[Scenario Based Questions](https://github.com/Anshmishra111/BridgeLabz-Training/tree/core-java-practice/core-java-practice/scenario-based) |
-| 22 Dec 2025       | Solved and submitted **Level 1 and 2** problems in **String**.  | [Strings](https://github.com/Anshmishra111/BridgeLabz-Training/tree/core-java-practice/core-java-practice/gcr-codebase/string) 
-| 25 Dec 2025       | Solved and submitted **Level 1, 2 and 3** problems in **Method**.  | [Strings](https://github.com/Anshmishra111/BridgeLabz-Training/tree/core-java-practice/core-java-practice/gcr-codebase/method)
-| 26 Dec 2025       | Solved and submitted extra problems in **String**.  | [Extras](https://github.com/Anshmishra111/BridgeLabz-Training/tree/core-java-practice/core-java-practice/gcr-codebase/extras) 
-| 28 Dec 2025       | Solved and submitted extra problems in **Extras Built in function**.  | [Built in functions](https://github.com/Anshmishra111/BridgeLabz-Training/tree/core-java-practice/core-java-practice/gcr-codebase/built-in-functions) 
-| 29 Dec 2025       | Solved and submitted extra problems in **Scenario Based Questions**.  | [Scenario based questions](https://github.com/Anshmishra111/BridgeLabz-Training/tree/core-java-practice/core-java-practice/scenario-based) 
-| 30 Dec 2025       | Solved and submitted **Level 1 and 2** problems in **Class and Object**.  | [Class abd Object](https://github.com/Anshmishra111/BridgeLabz-Training/tree/oops-practice/oops-practice/gcr-codebase/class-and-object) 
-| 31 Dec 2025       | Solved and submitted **Level 1 ** problems in **Constructors**.  | [Constructors](https://github.com/Anshmishra111/BridgeLabz-Training/tree/oops-practice/oops-practice/gcr-codebase/constructor) 
-| 01 Jan 2026       | Solved and submitted **Level 1 ** problems in **Keywords**.  | [Keywords](https://github.com/Anshmishra111/BridgeLabz-Training/tree/oops-practice/oops-practice/gcr-codebase/keywords) 
-| 02 Jan 2026       | Solved and submitted  problems in **Class Object and Sequence diagrams**.  | [Class Object and Sequence diagrams](https://github.com/Anshmishra111/BridgeLabz-Training/tree/oops-practice/oops-practice/gcr-codebase/class-object-sequence-diagrams) 
-| 03 Jan 2026       | Solved and submitted  problems in **Scenario Based Questions**.  | [Scenario Based Questions](https://github.com/Anshmishra111/BridgeLabz-Training/tree/oops-practice/oops-practice/scenario-based) 
-| 04 Jan 2026       | Solved and submitted  problems in **Inheritance**.  | [Inheritance](https://github.com/Anshmishra111/BridgeLabz-Training/tree/oops-practice/oops-practice/gcr-codebase/inheritance) 
-| 05 Jan 2026       | Solved and submitted  problems in **Polymorphism, Encapsulation, Interfaace and Abstract classes**.  | [Polymorphism, Encapsulation, Interfaace and Abstract classes](https://github.com/Anshmishra111/BridgeLabz-Training/tree/oops-practice/oops-practice/gcr-codebase/encapsulation-polymorphism-interface-abstract-classes) 
-| 06 Jan 2026       | Solved and submitted  problems in **Scenario Based Questions**.  | [Scenario Based Questions](https://github.com/Anshmishra111/BridgeLabz-Training/tree/oops-practice/oops-practice/scenario-based) 
-| 07 Jan 2026       | Solved and submitted  problems in **Scenario Based Questions**.  | [Scenario Based Questions](https://github.com/Anshmishra111/BridgeLabz-Training/tree/oops-practice/oops-practice/scenario-based) 
-| 08 Jan 2026       | Solved and submitted  problems in **Linked list**.  | [Linked list](https://github.com/Anshmishra111/BridgeLabz-Training/tree/dsa-practice/dsa-practice/gcr-codebase/linkedlist) 
-| 09 Jan 2026       | Solved and submitted  problems in **Scenario Based Questions**.  | [Scenario Based Questions](https://github.com/Anshmishra111/BridgeLabz-Training/tree/oops-practice/oops-practice/scenario-based) 
-| 12 Jan 2026       | Solved and submitted  problems in **Scenario Based Questions**.  | [Scenario Based Questions](https://github.com/Anshmishra111/BridgeLabz-Training/tree/oops-practice/oops-practice/scenario-based)
-| 15 Jan 2026       | Solved and submitted  problems in **Stack Queue HashMap and Hashing function**.  | [Stack Queue HashMap and Hashing function](https://github.com/Anshmishra111/BridgeLabz-Training/tree/dsa-practice/dsa-practice/gcr-codebase/stack-queue-hashmap-and-hashing-function) 
-| 16 Jan 2026       | Solved and submitted  problems in **Sorting Algorithm**.  | [Sorting Algorithm](https://github.com/Anshmishra111/BridgeLabz-Training/tree/dsa-practice/dsa-practice/gcr-codebase/sorting-algorithm)
-| 21 Jan 2026       | Solved and submitted  problems in **Linear and Binary Search**.  | [Linear and Binary Search](https://github.com/Anshmishra111/BridgeLabz-Training/tree/dsa-practice/dsa-practice/gcr-codebase/linear-and-binary-search)
-| 20 Jan 2026       | Solved and submitted  problems in **Runtime analysis and Big O Notation**.  | [Runtime analysis and Big O Notation](https://github.com/Anshmishra111/BridgeLabz-Training/tree/dsa-practice/dsa-practice/gcr-codebase/runtime-analysis-and-big-O-notation)
-| 20 Jan 2026       | Solved and submitted  problems in **Scenario Based Questions**.  | [Scenario Based Questions](https://github.com/Anshmishra111/BridgeLabz-Training/tree/dsa-practice/dsa-practice/scenario-based)
-| 21 Jan 2026       | Solved and submitted  problems in **Java Generics**.  | [Java Generics](https://github.com/Anshmishra111/BridgeLabz-Training/commits/collection-practice/collection-practice/gcr-codebase/generics)
-| 23 Jan 2026       | Solved and submitted  problems in **Java Collections**.  | [Collections](https://github.com/Anshmishra111/BridgeLabz-Training/tree/collection-practice/collection-practice/gcr-codebase/collections)
-| 27 Jan 2026       | Solved and submitted  problems in **Java Streams**.  | [Streams](https://github.com/Anshmishra111/BridgeLabz-Training/tree/collection-practice/collection-practice/gcr-codebase/streams)
-| 28 Jan 2026       | Solved and submitted  problems in **Scenario Based Questions**.  | [Scenario Based Questions](https://github.com/Anshmishra111/BridgeLabz-Training/commits/dsa-practice/dsa-practice/scenario-based)
-| 28 Jan 2026       | Solved and submitted  problems in **Exceptions**.  | [Exceptions](https://github.com/Anshmishra111/BridgeLabz-Training/tree/collection-practice/collection-practice/gcr-codebase/exceptions)
-| 31 Jan 2026       | Solved and submitted  problems in **Lexical Twist**.  | [Scenario Based Questions](https://github.com/Anshmishra111/BridgeLabz-Training/tree/core-java-practice/core-java-practice/scenario-based)
-| 31 Jan 2026       | Solved and submitted  problems in **Flip KeyLogical Problem**.  | [Scenario Based Questions](https://github.com/Anshmishra111/BridgeLabz-Training/tree/core-java-practice/core-java-practice/scenario-based)
-| 31 Jan 2026       | Solved and submitted  problems in **Scenario Based Questions**.  | [Scenario Based Questions](https://github.com/Anshmishra111/BridgeLabz-Training/tree/dsa-practice/dsa-practice/scenario-based)
-| 30 Jan 2026       | Solved and submitted  problems in **Regex**.  | [Regex](https://github.com/Anshmishra111/BridgeLabz-Training/tree/collection-practice/collection-practice/gcr-codebase/regex)
-| 31 Jan 2026       | Solved and submitted  problems in **Junit**.  | [Junit](https://github.com/Anshmishra111/BridgeLabz-Training/tree/collection-practice/collection-practice/gcr-codebase/junit)
-| 02 Feb 2026       | Solved and submitted  problems in **Scenario Based Questions**.  | [Scenario Based Questions](https://github.com/Anshmishra111/BridgeLabz-Training/tree/oops-practice/oops-practice/scenario-based)
-| 03 Feb 2026       | Solved and submitted  problems in **Annotations**.  | [Annotations](https://github.com/Anshmishra111/BridgeLabz-Training/commits/collection-practice/collection-practice/gcr-codebase/annotations)
-| 03 Feb 2026       | Solved and submitted  problems in **Reflection**.  | [Reflection](https://github.com/Anshmishra111/BridgeLabz-Training/commits/collection-practice/collection-practice/gcr-codebase/reflection)
-| 03 Feb 2026       | Solved and submitted  problems in **Scenario Based Questions**.  | [StreamBuzz](https://github.com/Anshmishra111/BridgeLabz-Training/commits/collection-practice/collection-practice/scenario-based)
-| 03 Feb 2026       | Solved and submitted  problems in **Scenario Based Questions**.  | [FactoryRobotHazard](https://github.com/Anshmishra111/BridgeLabz-Training/commits/dsa-practice/dsa-practice/scenario-based)
-| 04 Feb 2026       | Solved and submitted  problems in **CSV Data Handling**.  | [CSV Data Handling](https://github.com/Anshmishra111/BridgeLabz-Training/commits/io-programming-practice/io-programming-practice/gcr-codebase/csv-data-handling)
-| 04 Feb 2026       | Solved and submitted  problems in **JSON Data**.  | [JSON Data](https://github.com/Anshmishra111/BridgeLabz-Training/commits/io-programming-practice/io-programming-practice/gcr-codebase/json-data)
-| 04 Feb 2026       | Solved and submitted  problems in **Lambda Expression**.  | [Lambda Expression](https://github.com/Anshmishra111/BridgeLabz-Training/commits/java8-feature-practice/java8-feature-practice/gcr-codebase/lambda-expression)
-| 06 Feb 2026       | Solved and submitted  problems in **Scenario Based**.  | [AeroVigil Problem](https://github.com/Anshmishra111/BridgeLabz-Training/commits/dsa-practice/dsa-practice/scenario-based)
-| 04-07 Feb 2026       | Solved and submitted  problems in **Functional Interfaces**.  | [Functional Interfaces](https://github.com/Anshmishra111/BridgeLabz-Training/commits/java8-feature-practice/java8-feature-practice/gcr-codebase/functional-interfaces)
-| 07 Feb 2026       | Solved and submitted  problems in **Stream API**.  | [Stream API](https://github.com/Anshmishra111/BridgeLabz-Training/commits/java8-feature-practice/java8-feature-practice/gcr-codebase/stream-api)
-| 07 Feb 2026       | Solved and submitted  problems in **Collectors**.  | [Collectors](https://github.com/Anshmishra111/BridgeLabz-Training/commits/java8-feature-practice/java8-feature-practice/gcr-codebase/collectors)
-| 07 Feb 2026       | Solved and submitted  problems in **Ocean Fleet**.  | [Ocean Fleet](https://github.com/Anshmishra111/BridgeLabz-Training/commits/collection-practice/collection-practice/scenario-based)
-| 08 Feb 2026       | Solved and submitted  problems in **Design Patterns**.  | [Design Patterns](https://github.com/Anshmishra111/BridgeLabz-Training/commits/design-solution-practice/design-solution-practice/gcr-codebase/design-patterns)
-| 08 Feb 2026       | Solved and submitted  problems in **Multi Threading**.  | [Multi Threading](https://github.com/Anshmishra111/BridgeLabz-Training/commits/multi-threading-practice/multi-threading-practice/gcr-codebase/multithreading)
-| 09 Feb 2026       | Solved and submitted  problems in **SonarQube**.  | [SonarQube](https://github.com/Anshmishra111/BridgeLabz-Training/commits/collection-practice/collection-practice/gcr-codebase/SonarQube%20(AddressBook))
-| 11 Feb 2026       | Solved and submitted  problems in **Test Case**.  | [Test Case](https://github.com/Anshmishra111/BridgeLabz-Training/tree/collection-practice/collection-practice/scenario-based/Junit)
-| 12 Feb 2026       | Solved and submitted  problems in **JDBC & DBMS**.  | [JDBC & DBMS](https://github.com/Anshmishra111/BridgeLabz-Training/commits/dbms-practice/dbms-practice/gcr-codebase/Jdbc)
-| 16 Feb 2026       | Solved and submitted  problems in **Employee Wage Computation**.  | [Employee Wage Computation](https://github.com/Anshmishra111/BridgeLabz-Training/tree/collection-practice/collection-practice/scenario-based/EmployeeWageComputation)
-| 16 Feb 2026       | Solved and submitted  problems in **Address Book**.  | [Address Book](https://github.com/Anshmishra111/BridgeLabz-Training/tree/collection-practice/collection-practice/scenario-based/AddressBook)
+## 📚 Topics Covered
+
+- Introduction to Data, Database, and DBMS
+- File System vs DBMS
+- Advantages of DBMS
+- Types of DBMS
+- Relational Database Management System (RDBMS)
+- Features of RDBMS
+- SQL vs NoSQL
+- When to Use SQL and NoSQL
+- Introduction to MySQL
+- MySQL Architecture
+- Installing and Configuring MySQL
+- Creating Databases and Tables
+- DDL Commands
+  - CREATE
+  - ALTER
+  - DROP
+  - TRUNCATE
+  - RENAME
+- DML Commands
+  - INSERT
+  - UPDATE
+  - DELETE
+- Introduction to TCL
+- Introduction to DCL
+
+---
+
+## 🛠 Practical Work
+
+### Database Created
+
+```
+health_clinic_db
+```
+
+### Tables Created
+
+- patients
+- doctors
+- specializations
+- appointments
+
+### Operations Performed
+
+- Created database and tables
+- Inserted sample records
+- Used ALTER TABLE to add and remove columns
+- Updated existing records
+- Deleted records using WHERE clause
+- Verified data using SELECT queries
+- Created a dedicated MySQL user
+- Granted SELECT, INSERT, UPDATE, and DELETE permissions
+
+---
+
+## 📂 Project Structure
+
+```
+Day-1
+│
+├── SQL Scripts
+│   ├── create_database.sql
+│   ├── create_tables.sql
+│   ├── insert_data.sql
+│   ├── alter_queries.sql
+│   ├── update_delete_queries.sql
+│   └── user_permissions.sql
+│
+├── README.md
+│
+└── Screenshots
+```
+
+---
+
+## 💻 SQL Concepts Practiced
+
+### DDL Commands
+
+- CREATE DATABASE
+- CREATE TABLE
+- ALTER TABLE
+- DROP COLUMN
+
+### DML Commands
+
+- INSERT
+- UPDATE
+- DELETE
+- SELECT
+
+### DCL Commands
+
+- CREATE USER
+- GRANT
+- FLUSH PRIVILEGES
+
+---
+
+## 🗂 Database Schema
+
+```
+health_clinic_db
+
+│── patients
+│── doctors
+│── specializations
+└── appointments
+```
+
+---
+
+## 🎯 Learning Outcomes
+
+After completing Day 1, I learned:
+
+- Difference between Data, Database, DBMS, and RDBMS
+- Advantages of using DBMS over File Systems
+- SQL vs NoSQL use cases
+- MySQL architecture and installation
+- Creating databases and tables
+- Using DDL and DML commands
+- Basic TCL and DCL concepts
+- Managing users and privileges in MySQL
+- Performing CRUD operations on database tables
+
+---
+
+## 🚀 Technologies Used
+
+- MySQL 8.x
+- MySQL Workbench
+- SQL
+
+---
+
+## 📖 Key Takeaways
+
+- Built a Health Clinic database from scratch.
+- Practiced SQL syntax through real-world examples.
+- Understood the importance of structured data and relational databases.
+- Learned database security basics using user privileges.
+- Strengthened SQL fundamentals for future database development.
+
+---
+
+## ✅ Assignment Completed
+
+- Created the `health_clinic_db` database.
+- Created `specializations` and `appointments` tables.
+- Inserted sample data.
+- Practiced ALTER TABLE.
+- Executed UPDATE and DELETE queries with WHERE conditions.
+- Created a dedicated MySQL user with restricted privileges.
+- Verified all operations using SELECT statements.
+
+---
+
+## 👨‍💻 Author
+
+**Himanshu Mishra**
+
+BridgeLabz Refresher Training
+
+Day 1 – DBMS Fundamentals & RDBMS Basics
