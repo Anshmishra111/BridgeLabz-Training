@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AuraGreet | Premium Interactive Greeting Cards</title>
+  <meta name="description" content="Design, customize, and download beautiful, premium interactive greeting cards for birthdays, anniversaries, and special moments.">
+  
+  <!-- Premium Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Great+Vibes&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;700&family=Pacifico&family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Playwrite+DE+LA:wght@300&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome for Premium Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="index.css">
+</head>
+<body class="dark-theme">
+  <!-- Interactive Background Canvas for subtle particles -->
+  <canvas id="ambient-particles" class="ambient-canvas"></canvas>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+        <h1>AuraGreet</h1>
+      </div>
+      <div class="header-actions">
+        <button id="theme-toggle-btn" class="icon-btn" title="Toggle Theme" aria-label="Toggle Theme">
+          <i class="fa-solid fa-sun"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="workspace">
+      <!-- Card Preview Section -->
+      <section class="preview-area">
+        <div class="card-stage">
+          <!-- The Greeting Card Container -->
+          <div id="greeting-card" class="greeting-card gradient-bg-1">
+            <div class="card-frame-overlay"></div>
+            <div class="card-noise-overlay"></div>
+            
+            <!-- Dynamic Floating Decorative Elements -->
+            <div id="card-decorations" class="card-decorations">
+              <span class="decor-item item-1">✨</span>
+              <span class="decor-item item-2">🌸</span>
+              <span class="decor-item item-3">🎈</span>
+              <span class="decor-item item-4">💖</span>
+            </div>
+            
+            <div class="card-content-wrapper">
+              <span id="preview-badge" class="card-badge">BIRTHDAY</span>
+              <h2 id="preview-title" class="card-title font-playfair">Wishing You Endless Joy!</h2>
+              <p id="preview-message" class="card-message font-caveat">May your day be filled with laughter, love, and light. Wishing you the happiest of birthdays!</p>
+              <div class="card-footer">
+                <span class="divider"></span>
+                <p id="preview-sender" class="card-sender font-inter">With Warmest Regards, Alex</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stage-controls">
+          <p class="helper-text"><i class="fa-solid fa-info-circle"></i> Changes reflect in real-time. Export below when ready.</p>
+        </div>
+      </section>
+
+      <!-- Customization Dashboard Sidebar -->
+      <aside class="dashboard-panel">
+        <div class="panel-section">
+          <h2><i class="fa-solid fa-list"></i> Select Presets</h2>
+          <div class="preset-chips">
+            <button class="chip active" data-category="birthday">Birthday</button>
+            <button class="chip" data-category="anniversary">Anniversary</button>
+            <button class="chip" data-category="thank_you">Thank You</button>
+            <button class="chip" data-category="congrats">Congratulations</button>
+            <button class="chip" data-category="custom">Custom</button>
+          </div>
+        </div>
+
+        <!-- Customize Content -->
+        <div class="panel-section">
+          <h2><i class="fa-solid fa-pen-nib"></i> Edit Content</h2>
+          <div class="input-group">
+            <label for="input-badge">Tag / Occasion</label>
+            <input type="text" id="input-badge" placeholder="e.g. CELEBRATION" value="BIRTHDAY" maxlength="20">
+          </div>
+          <div class="input-group">
+            <label for="input-title">Greeting Title</label>
+            <input type="text" id="input-title" placeholder="Greeting Header" value="Wishing You Endless Joy!" maxlength="40">
+          </div>
+          <div class="input-group">
+            <label for="input-message">Personal Message</label>
+            <textarea id="input-message" rows="3" placeholder="Write your heartfelt message here..." maxlength="200">May your day be filled with laughter, love, and light. Wishing you the happiest of birthdays!</textarea>
+          </div>
+          <div class="input-group">
+            <label for="input-sender">From</label>
+            <input type="text" id="input-sender" placeholder="Your Name" value="With Warmest Regards, Alex" maxlength="40">
+          </div>
+        </div>
+
+        <!-- Visual Settings -->
+        <div class="panel-section">
+          <h2><i class="fa-solid fa-palette"></i> Style & Theme</h2>
+          
+          <!-- Font Selection -->
+          <div class="input-group">
+            <label for="select-font">Typography Style</label>
+            <div class="select-wrapper">
+              <select id="select-font">
+                <option value="font-playfair">Playfair Serif (Classic)</option>
+                <option value="font-caveat">Caveat Handwriting (Playful)</option>
+                <option value="font-greatvibes">Great Vibes Calligraphy (Elegant)</option>
+                <option value="font-pacifico">Pacifico Script (Fun)</option>
+                <option value="font-montserrat">Montserrat (Modern Bold)</option>
+                <option value="font-inter">Inter (Clean & Minimal)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Color theme / Gradients -->
+          <label class="section-sub-label">Background Aesthetic</label>
+          <div class="gradient-grid">
+            <button class="gradient-option active gradient-bg-1" data-bg="gradient-bg-1" title="Sunset Glow"></button>
+            <button class="gradient-option gradient-bg-2" data-bg="gradient-bg-2" title="Midnight Aura"></button>
+            <button class="gradient-option gradient-bg-3" data-bg="gradient-bg-3" title="Emerald Glass"></button>
+            <button class="gradient-option gradient-bg-4" data-bg="gradient-bg-4" title="Cherry Blossom"></button>
+            <button class="gradient-option gradient-bg-5" data-bg="gradient-bg-5" title="Minimal Slate"></button>
+            <button class="gradient-option gradient-bg-6" data-bg="gradient-bg-6" title="Royal Silk"></button>
+          </div>
+
+          <!-- Stickers & Emojis -->
+          <label class="section-sub-label">Card Decorations</label>
+          <div class="decorations-selector">
+            <button class="decor-toggle active" data-decor="sparkles">✨ Sparkles</button>
+            <button class="decor-toggle active" data-decor="flowers">🌸 Flowers</button>
+            <button class="decor-toggle active" data-decor="balloons">🎈 Balloons</button>
+            <button class="decor-toggle active" data-decor="hearts">💖 Hearts</button>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="panel-actions">
+          <button id="download-btn" class="primary-btn"><i class="fa-solid fa-download"></i> Download PNG</button>
+          <div class="button-row">
+            <button id="copy-link-btn" class="secondary-btn"><i class="fa-solid fa-link"></i> Share Link</button>
+            <button id="save-btn" class="secondary-btn" title="Save Design"><i class="fa-solid fa-bookmark"></i> Save Layout</button>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>Created with <i class="fa-solid fa-heart animate-pulse"></i> by AuraGreet. Personalize every occasion.</p>
+    </footer>
+  </div>
+
+  <!-- Toast Notification System -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Hidden canvas for generating clean downloadable image -->
+  <canvas id="export-canvas" style="display: none;"></canvas>
+
+  <script src="app.js"></script>
+</body>
+</html>
