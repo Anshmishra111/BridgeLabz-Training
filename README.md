@@ -1,6 +1,6 @@
 # 🚀 BridgeLabz Refresher Training - SQL & DBMS
 
-This repository contains my daily learning, assignments, SQL scripts, and practical implementations completed during the **BridgeLabz Refresher Training**.
+This repository contains my daily learning, hands-on practice, assignments, SQL scripts, and project implementations completed during the **BridgeLabz Refresher Training**. The training covers **DBMS, MySQL, SQL, JDBC, Java Design Patterns, and building a real-world Health Clinic Management System**.
 
 ---
 
@@ -8,7 +8,7 @@ This repository contains my daily learning, assignments, SQL scripts, and practi
 
 ## 📚 Topics Covered
 
-- Data, Database and DBMS
+- Introduction to Data, Database & DBMS
 - File System vs DBMS
 - Advantages of DBMS
 - Types of DBMS
@@ -24,17 +24,25 @@ This repository contains my daily learning, assignments, SQL scripts, and practi
 - TCL Basics
 - DCL Basics
 
+---
+
 ## 💻 Practical Work
 
-- Created `health_clinic_db`
-- Created Patients and Doctors tables
-- Created Specializations and Appointments tables
-- Inserted sample records
+- Created **health_clinic_db**
+- Created Patients Table
+- Created Doctors Table
+- Created Specializations Table
+- Created Appointments Table
+- Inserted Sample Records
 - Practiced ALTER TABLE
-- UPDATE and DELETE with WHERE clause
-- Created MySQL User with restricted privileges
+- Executed UPDATE Queries
+- Executed DELETE Queries
+- Created MySQL User
+- Granted Database Privileges
 
-### 📁 Folder
+---
+
+## 📁 Folder
 
 ```
 Refresher-Training/
@@ -62,7 +70,7 @@ Refresher-Training/
 
 - What is Index
 - Why Index
-- Internal Working of Indexes
+- Internal Working
 - B+ Tree
 - Clustered Index
 - Non-Clustered Index
@@ -81,15 +89,20 @@ Refresher-Training/
 - Boyce-Codd Normal Form (BCNF)
 - Denormalization
 
+---
+
 ## 💻 Practical Work
 
-- Designed complete ER Diagram for Health Clinic Database
-- Implemented Primary Key and Foreign Key relationships
-- Created appropriate indexes
-- Practiced query optimization using EXPLAIN
-- Normalized database schema up to 3NF
+- Designed ER Diagram
+- Implemented Primary Keys
+- Implemented Foreign Keys
+- Created Indexes
+- Used EXPLAIN for Query Optimization
+- Normalized Database up to 3NF
 
-### 📁 Folder
+---
+
+## 📁 Folder
 
 ```
 Refresher-Training/
@@ -110,7 +123,7 @@ Refresher-Training/
 - FULL OUTER JOIN
 - SELF JOIN
 - CROSS JOIN
-- Multiple Table Join
+- Multiple Table JOIN
 
 ### Stored Procedures
 
@@ -131,17 +144,21 @@ Refresher-Training/
 - BEFORE DELETE
 - AFTER DELETE
 
+---
+
 ## 💻 Practical Work
 
-- Implemented all SQL JOIN operations
-- Built multi-table queries
-- Created Stored Procedures
-- Used IN, OUT and INOUT parameters
-- Implemented exception handling in procedures
-- Created BEFORE and AFTER triggers
-- Automated business rules using triggers
+- Implemented SQL JOIN Queries
+- Multi-table Joins
+- Stored Procedures
+- Parameterized Procedures
+- Trigger Creation
+- Audit Trigger
+- Appointment Trigger
 
-### 📁 Folder
+---
+
+## 📁 Folder
 
 ```
 Refresher-Training/
@@ -150,11 +167,237 @@ Refresher-Training/
 
 ---
 
-# 🛠 Technologies Used
+# 📅 Day 4 - Health Clinic Application using JDBC
 
-- MySQL 8
+## 📖 Project Overview
+
+Developed a **Health Clinic Console Application** using **Java, JDBC, MySQL, Maven, and HikariCP** following a clean layered architecture. The application enables clinic staff to manage patients, doctors, appointments, billing, and visit history efficiently.
+
+---
+
+## 🎯 Project Features
+
+- Register Patients
+- Register Doctors
+- Manage Doctor Specializations
+- Book Appointments
+- Complete Appointments
+- Generate Bills
+- Maintain Visit History
+- CRUD Operations
+- Transaction Management
+- Menu Driven Console Application
+
+---
+
+## 🏗 Layered Architecture
+
+```
+                Console UI
+                     │
+                     ▼
+             Service Layer
+                     │
+                     ▼
+                DAO Layer
+                     │
+                     ▼
+                DTO Layer
+                     │
+                     ▼
+               MySQL Database
+```
+
+---
+
+## 📂 Project Structure
+
+```
+HealthClinicApp
+│
+├── pom.xml
+│
+├── database
+│   └── health_clinic_schema.sql
+│
+└── src
+    └── main
+        └── java
+            └── com.clinic
+                │
+                ├── Main.java
+                │
+                ├── config
+                │   └── HikariConnectionPool.java
+                │
+                ├── dto
+                │   ├── Patient.java
+                │   ├── Doctor.java
+                │   ├── Specialization.java
+                │   ├── Appointment.java
+                │   ├── Billing.java
+                │   └── VisitHistory.java
+                │
+                ├── dao
+                │   ├── PatientDAO.java
+                │   ├── PatientDAOImpl.java
+                │   ├── DoctorDAO.java
+                │   ├── DoctorDAOImpl.java
+                │   ├── SpecializationDAO.java
+                │   ├── SpecializationDAOImpl.java
+                │   ├── AppointmentDAO.java
+                │   ├── AppointmentDAOImpl.java
+                │   ├── BillingDAO.java
+                │   ├── BillingDAOImpl.java
+                │   ├── VisitHistoryDAO.java
+                │   └── VisitHistoryDAOImpl.java
+                │
+                ├── service
+                │   └── AppointmentService.java
+                │
+                └── ui
+                    └── ConsoleMenu.java
+```
+
+---
+
+## 🔄 Application Workflow
+
+```
+User
+ │
+ ▼
+Console Menu
+ │
+ ▼
+Service Layer
+ │
+ ▼
+DAO Layer
+ │
+ ▼
+MySQL Database
+ │
+ ▼
+Response
+```
+
+---
+
+## ⚙ Development Process
+
+### Step 1
+
+- Designed Health Clinic Database
+
+### Step 2
+
+- Created DTO Classes
+
+### Step 3
+
+- Configured Database Connection using HikariCP
+
+### Step 4
+
+- Developed DAO Interfaces and Implementations
+
+### Step 5
+
+- Built Service Layer
+
+### Step 6
+
+- Developed Console Menu
+
+### Step 7
+
+- Connected all Layers
+
+### Step 8
+
+- Tested Complete Application
+
+---
+
+## 💻 Modules
+
+### Patient Module
+
+- Add Patient
+- Update Patient
+- Delete Patient
+- Search Patient
+- View All Patients
+
+### Doctor Module
+
+- Add Doctor
+- Update Doctor
+- Delete Doctor
+- Search Doctor
+- View All Doctors
+
+### Specialization Module
+
+- Add Specialization
+- Assign Doctors
+
+### Appointment Module
+
+- Book Appointment
+- Update Appointment
+- Cancel Appointment
+- Complete Appointment
+
+### Billing Module
+
+- Generate Bill
+- Update Payment Status
+
+### Visit History Module
+
+- Record Diagnosis
+- Store Prescription
+- View Visit History
+
+---
+
+## 🛢 Database Tables
+
+- Patients
+- Doctors
+- Specializations
+- Appointments
+- Billing
+- VisitHistory
+
+---
+
+## 🔑 JDBC Concepts Used
+
+- JDBC Architecture
+- DriverManager
+- HikariCP Connection Pool
+- PreparedStatement
+- CallableStatement
+- ResultSet
+- Transactions
+- Commit
+- Rollback
+- Try-With-Resources
+- Exception Handling
+
+---
+
+## 🚀 Technologies Used
+
+- Java 17
+- JDBC
+- Maven
+- MySQL
+- HikariCP
 - MySQL Workbench
-- SQL
 - Git
 - GitHub
 
@@ -175,14 +418,29 @@ BridgeLabz-Training
     ├── Day-2
     │   ├── ER Diagram
     │   ├── Indexing
-    │   ├── Normalization
+    │   ├── Database Normalization
     │   ├── README.md
     │   └── Screenshots
     │
-    └── Day-3
-        ├── SQL Joins
-        ├── Stored Procedures
-        ├── Triggers
+    ├── Day-3
+    │   ├── SQL Joins
+    │   ├── Stored Procedures
+    │   ├── Triggers
+    │   ├── README.md
+    │   └── Screenshots
+    │
+    └── Day-4
+        ├── HealthClinicApp
+        ├── database
+        │   └── health_clinic_schema.sql
+        ├── src
+        │   ├── config
+        │   ├── dto
+        │   ├── dao
+        │   ├── service
+        │   ├── ui
+        │   └── Main.java
+        ├── pom.xml
         ├── README.md
         └── Screenshots
 ```
@@ -192,14 +450,40 @@ BridgeLabz-Training
 # 🎯 Learning Progress
 
 - ✅ Day 1 – DBMS Fundamentals & SQL Basics
-- ✅ Day 2 – ER Diagram, Indexing & Normalization
+- ✅ Day 2 – ER Diagram, Indexing & Database Normalization
 - ✅ Day 3 – SQL Joins, Stored Procedures & Triggers
+- ✅ Day 4 – Health Clinic Application using JDBC
 - ⏳ More days will be added as the training progresses.
 
 ---
 
-## 👨‍💻 Author
+# 🎓 Key Skills Gained
+
+- Database Design
+- SQL Programming
+- ER Diagram Design
+- Database Normalization
+- Indexing & Query Optimization
+- SQL Joins
+- Stored Procedures
+- Database Triggers
+- JDBC Programming
+- DAO Design Pattern
+- DTO Design Pattern
+- Layered Architecture
+- Transaction Management
+- Connection Pooling using HikariCP
+- CRUD Operations
+- Exception Handling
+- Console-Based Application Development
+- Git & GitHub
+
+---
+
+# 👨‍💻 Author
 
 **Himanshu Mishra**
 
 BridgeLabz Refresher Training
+
+Java | JDBC | MySQL | SQL | HikariCP | Maven | Git | GitHub
