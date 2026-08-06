@@ -8,14 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * BillingDAOImpl — SQL for the billing table.
- *
- * Column mapping (user's schema):
- *   bill_id (PK), appointment_id (UNIQUE), amount,
- *   payment_status ENUM('Pending','Paid','Refunded'),
- *   billing_date
- */
+
 public class BillingDAOImpl implements BillingDAO {
 
     /**

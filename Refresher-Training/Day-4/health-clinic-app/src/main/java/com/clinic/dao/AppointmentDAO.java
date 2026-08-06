@@ -5,13 +5,7 @@ import com.clinic.dto.Appointment;
 import java.sql.Connection;
 import java.util.List;
 
-/**
- * AppointmentDAO — contract for the appointments table.
- *
- * Note: updateAppointmentStatus takes an external Connection
- * because it is called from AppointmentService inside a transaction.
- * That shared connection is what ensures atomicity across all three writes.
- */
+
 public interface AppointmentDAO {
 
     /** @return generated appointment_id, or -1 on failure. */

@@ -9,16 +9,7 @@ import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-/**
- * AppointmentService — Floor 3: The Safety Net
- *
- * "Complete Appointment" = 3 database writes that MUST all succeed together:
- *   1. UPDATE appointments SET status = 'Completed'
- *   2. INSERT INTO billing
- *   3. INSERT INTO visit_history (with visit_notes)
- *
- * All three use ONE shared connection → setAutoCommit(false) → commit or rollback.
- */
+
 public class AppointmentService {
 
     private final AppointmentDAO  appointmentDAO;

@@ -2,13 +2,7 @@ package com.clinic.dto;
 
 import java.time.LocalDateTime;
 
-/**
- * DTO — Floor 1 Data Box for the visit_history table.
- *
- * Matches user's schema exactly:
- *   visit_id, appointment_id, diagnosis, prescription,
- *   visit_notes TEXT   ← extra field added in user's schema
- */
+
 public class VisitHistory {
 
     private int           visitId;

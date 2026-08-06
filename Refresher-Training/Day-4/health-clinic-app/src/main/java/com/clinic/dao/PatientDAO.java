@@ -4,16 +4,7 @@ import com.clinic.dto.Patient;
 
 import java.util.List;
 
-/**
- * PatientDAO — the contract (interface) for the patients table.
- *
- * This interface lists what operations are possible.
- * It does NOT say HOW they are done — that lives in PatientDAOImpl.
- *
- * Why code against an interface?
- *   If you ever need to swap MySQL for PostgreSQL (or a mock for tests),
- *   you create a new Impl and nothing that depends on PatientDAO breaks.
- */
+
 public interface PatientDAO {
 
     /**

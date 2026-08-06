@@ -1,10 +1,6 @@
 package com.clinic.dto;
 
-/**
- * DTO — Floor 1 Data Box for the specializations table.
- * Mirrors every column in the specializations table exactly.
- * No SQL, no business logic — just fields + getters/setters.
- */
+
 public class Specialization {
 
     private int    specializationId;

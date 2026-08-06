@@ -12,19 +12,7 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * ConsoleMenu — Floor 4: What the Receptionist Sees
- *
- * ZERO SQL here. Every database operation is delegated to DAOs or AppointmentService.
- * This class only reads input, calls the right method, and prints results.
- *
- * Schema aligned with user's health_clinic_db:
- *   - patients: phone_number, is_active, registered_on
- *   - doctors:  phone_number, is_active
- *   - appointments: appointment_date DATETIME (single column)
- *   - billing: bill_id, payment_status (Pending/Paid/Refunded)
- *   - visit_history: visit_notes
- */
+
 public class ConsoleMenu {
 
     private final Scanner            scanner        = new Scanner(System.in);

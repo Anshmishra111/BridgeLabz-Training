@@ -7,13 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * PatientDAOImpl — SQL implementation for the patients table.
- *
- * Column mapping (user's schema):
- *   patient_id, first_name, last_name, date_of_birth, gender,
- *   phone_number, email, is_active, registered_on
- */
+
 public class PatientDAOImpl implements PatientDAO {
 
     @Override

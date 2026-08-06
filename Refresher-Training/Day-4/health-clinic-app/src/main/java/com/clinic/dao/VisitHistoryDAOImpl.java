@@ -7,14 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * VisitHistoryDAOImpl — SQL for the visit_history table.
- *
- * Column mapping (user's schema):
- *   visit_id, appointment_id, diagnosis, prescription, visit_notes
- *
- * Note: visit_history has no timestamp column in user's schema.
- */
+
 public class VisitHistoryDAOImpl implements VisitHistoryDAO {
 
     /**

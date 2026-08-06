@@ -2,17 +2,7 @@ package com.clinic.dto;
 
 import java.time.LocalDateTime;
 
-/**
- * DTO — Floor 1 Data Box for the appointments table.
- *
- * Matches user's schema exactly:
- *   appointment_id, patient_id, doctor_id,
- *   appointment_date DATETIME,   ← single combined column (date + time together)
- *   status ENUM('Scheduled','Completed','Cancelled')
- *
- * NOTE: User's schema uses DATETIME (not separate DATE + TIME columns).
- *       So appointmentDate is LocalDateTime here.
- */
+
 public class Appointment {
 
     private int           appointmentId;

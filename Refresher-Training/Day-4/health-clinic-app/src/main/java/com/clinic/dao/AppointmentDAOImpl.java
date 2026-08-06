@@ -7,14 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * AppointmentDAOImpl — SQL for the appointments table.
- *
- * Column mapping (user's schema):
- *   appointment_id, patient_id, doctor_id,
- *   appointment_date DATETIME,   ← single column, no separate time column
- *   status ENUM('Scheduled','Completed','Cancelled')
- */
+
 public class AppointmentDAOImpl implements AppointmentDAO {
 
     @Override

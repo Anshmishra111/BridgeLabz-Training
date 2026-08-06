@@ -3,12 +3,7 @@ package com.clinic.dto;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-/**
- * DTO — Floor 1 Data Box for the patients table.
- * Matches user's schema exactly:
- *   patient_id, first_name, last_name, date_of_birth, gender,
- *   phone_number, email, is_active, registered_on
- */
+
 public class Patient {
 
     private int           patientId;

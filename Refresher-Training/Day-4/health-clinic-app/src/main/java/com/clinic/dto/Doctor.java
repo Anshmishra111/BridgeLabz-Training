@@ -1,10 +1,6 @@
 package com.clinic.dto;
 
-/**
- * DTO — Floor 1 Data Box for the doctors table.
- * Matches user's schema exactly:
- *   doctor_id, first_name, last_name, phone_number, email, is_active
- */
+
 public class Doctor {
 
     private int     doctorId;

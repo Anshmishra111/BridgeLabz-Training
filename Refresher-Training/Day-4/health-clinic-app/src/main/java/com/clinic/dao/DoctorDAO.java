@@ -5,9 +5,7 @@ import com.clinic.dto.Specialization;
 
 import java.util.List;
 
-/**
- * DoctorDAO — contract for the doctors table + doctor_specializations join.
- */
+
 public interface DoctorDAO {
 
     /** Insert a new doctor. @return generated doctor_id, or -1 on failure. */

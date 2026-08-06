@@ -6,27 +6,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-/**
- * Step 3 — The Database Connection Wire
- *
- * This is the ONE doorway all data passes through on its way
- * in or out of MySQL. Every DAO calls HikariConnectionPool.getConnection()
- * to get a connection — nobody opens their own separate door.
- *
- * Why HikariCP instead of plain DriverManager?
- *   DriverManager creates a brand-new physical connection on every call.
- *   HikariCP maintains a pool of ready connections — giving out an idle
- *   one instead of building a new one each time. For a busy clinic app,
- *   that difference matters; here it also keeps the code clean.
- *
- * IMPORTANT — Change these three constants to match your MySQL setup:
- *   DB_URL      : your MySQL host + port + database name
- *   DB_USERNAME : the application user created in the SQL schema
- *   DB_PASSWORD : its password
- *
- * The pool is created exactly once (Singleton via static initializer).
- * Thread-safe by design — HikariCP handles concurrent access internally.
- */
+
 public class HikariConnectionPool {
 
     // -------------------------------------------------------

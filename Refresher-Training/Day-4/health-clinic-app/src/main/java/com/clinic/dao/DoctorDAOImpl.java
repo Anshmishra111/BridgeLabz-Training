@@ -8,12 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * DoctorDAOImpl — SQL for doctors table + doctor_specializations join.
- *
- * Column mapping (user's schema):
- *   doctor_id, first_name, last_name, phone_number, email, is_active
- */
+
 public class DoctorDAOImpl implements DoctorDAO {
 
     @Override

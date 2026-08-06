@@ -4,12 +4,7 @@ import com.clinic.dto.Billing;
 import java.sql.Connection;
 import java.util.List;
 
-/**
- * BillingDAO — contract for the billing table.
- *
- * User's schema uses bill_id as PK (not billing_id).
- * payment_status ENUM: 'Pending','Paid','Refunded'
- */
+
 public interface BillingDAO {
 
     /**

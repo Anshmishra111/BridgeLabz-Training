@@ -4,12 +4,7 @@ import com.clinic.dto.VisitHistory;
 import java.sql.Connection;
 import java.util.List;
 
-/**
- * VisitHistoryDAO — contract for the visit_history table.
- *
- * User's schema columns:
- *   visit_id, appointment_id, diagnosis, prescription, visit_notes
- */
+
 public interface VisitHistoryDAO {
 
     /**

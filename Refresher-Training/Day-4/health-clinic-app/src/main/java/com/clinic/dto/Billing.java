@@ -3,17 +3,7 @@ package com.clinic.dto;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-/**
- * DTO — Floor 1 Data Box for the billing table.
- *
- * Matches user's schema exactly:
- *   bill_id, appointment_id, amount,
- *   payment_status ENUM('Pending','Paid','Refunded'),
- *   billing_date
- *
- * NOTE: Primary key column is bill_id (not billing_id).
- *       payment_status has 'Refunded' (not 'Cancelled').
- */
+
 public class Billing {
 
     private int           billId;         // column: bill_id (PK)
