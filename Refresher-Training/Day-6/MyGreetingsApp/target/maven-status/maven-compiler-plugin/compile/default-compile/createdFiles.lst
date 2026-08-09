@@ -1,0 +1,4 @@
+com\greetings\dao\GreetingDAO.class
+com\greetings\GreetingsApplication.class
+com\greetings\controller\GreetingController.class
+com\greetings\model\Greeting.class
