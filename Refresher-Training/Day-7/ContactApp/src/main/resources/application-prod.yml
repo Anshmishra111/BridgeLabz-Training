@@ -1,0 +1,40 @@
+# =====================================================================
+# application-prod.yml  — Production profile
+# Configure your production DB credentials via environment variables.
+# Activate with:  --spring.profiles.active=prod
+#
+# Required environment variables:
+#   DB_URL      e.g. jdbc:mysql://your-host:3306/contactdb
+#   DB_USERNAME your-db-user
+#   DB_PASSWORD your-db-password
+# =====================================================================
+
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/contactdb?useSSL=false&serverTimezone=UTC}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:changeme}
+
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: validate            # NEVER auto-create in production; use Flyway/Liquibase
+    show-sql: false
+
+  h2:
+    console:
+      enabled: false               # H2 console disabled in production
+
+# Minimal logging in production
+logging:
+  level:
+    root: WARN
+    com.contactapp: INFO

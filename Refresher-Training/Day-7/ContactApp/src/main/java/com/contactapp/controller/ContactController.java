@@ -1,96 +1,100 @@
 package com.contactapp.controller;
 
-import com.contactapp.model.Contact;
-import com.contactapp.service.ContactService;
+import com.contactapp.dto.request.ContactRequestDTO;
+import com.contactapp.dto.response.ContactResponseDTO;
+import com.contactapp.service.IContactService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/contacts")
+@Tag(name = "Contacts", description = "CRUD operations for managing contacts")
 public class ContactController {
 
-    @Autowired
-    private ContactService contactService;
+    private final IContactService contactService;
 
-    // -------------------------------------------------------
-    // CREATE  ->  POST /api/contacts
-    // -------------------------------------------------------
+    public ContactController(IContactService contactService) {
+        this.contactService = contactService;
+    }
+
+    @Operation(summary = "Create a new contact", description = "Creates a contact and returns the saved record with its ID and timestamps.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "Contact created successfully"),
+            @ApiResponse(responseCode = "400", description = "Validation error — check request body"),
+            @ApiResponse(responseCode = "409", description = "A contact with this email already exists")
+    })
     @PostMapping
-    public ResponseEntity<Contact> createContact(@Valid @RequestBody Contact contact) {
-        Contact saved = contactService.saveContact(contact);
-        return new ResponseEntity<>(saved, HttpStatus.CREATED);
+    public ResponseEntity<ContactResponseDTO> createContact(
+            @Valid @RequestBody ContactRequestDTO dto) {
+        ContactResponseDTO created = contactService.createContact(dto);
+        return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
-    // -------------------------------------------------------
-    // READ ALL  ->  GET /api/contacts
-    // -------------------------------------------------------
+    @Operation(summary = "Get all contacts", description = "Returns a list of all contacts (empty list if none exist).")
+    @ApiResponse(responseCode = "200", description = "List returned successfully")
     @GetMapping
-    public ResponseEntity<List<Contact>> getAllContacts() {
-        List<Contact> contacts = contactService.getAllContacts();
-        return ResponseEntity.ok(contacts);
+    public ResponseEntity<List<ContactResponseDTO>> getAllContacts() {
+        return ResponseEntity.ok(contactService.getAllContacts());
     }
 
-    // -------------------------------------------------------
-    // READ BY ID  ->  GET /api/contacts/{id}
-    // -------------------------------------------------------
+    @Operation(summary = "Get a contact by ID")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Contact found"),
+            @ApiResponse(responseCode = "404", description = "Contact not found")
+    })
     @GetMapping("/{id}")
-    public ResponseEntity<?> getContactById(@PathVariable Long id) {
-        Optional<Contact> contact = contactService.getContactById(id);
-        if (contact.isPresent()) {
-            return ResponseEntity.ok(contact.get());
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body("Contact not found with id: " + id);
+    public ResponseEntity<ContactResponseDTO> getContactById(
+            @Parameter(description = "ID of the contact to retrieve") @PathVariable Long id) {
+        return ResponseEntity.ok(contactService.getContactById(id));
     }
 
-    // -------------------------------------------------------
-    // SEARCH BY NAME  ->  GET /api/contacts/search?name=John
-    // -------------------------------------------------------
+    @Operation(summary = "Search contacts by name (case-insensitive, partial match)")
+    @ApiResponse(responseCode = "200", description = "Search results returned")
     @GetMapping("/search")
-    public ResponseEntity<List<Contact>> searchByName(@RequestParam String name) {
-        List<Contact> contacts = contactService.searchByName(name);
-        return ResponseEntity.ok(contacts);
+    public ResponseEntity<List<ContactResponseDTO>> searchByName(
+            @Parameter(description = "Name substring to search for") @RequestParam String name) {
+        return ResponseEntity.ok(contactService.searchByName(name));
     }
 
-    // -------------------------------------------------------
-    // UPDATE  ->  PUT /api/contacts/{id}
-    // -------------------------------------------------------
+    @Operation(summary = "Update an existing contact")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Contact updated successfully"),
+            @ApiResponse(responseCode = "400", description = "Validation error"),
+            @ApiResponse(responseCode = "404", description = "Contact not found"),
+            @ApiResponse(responseCode = "409", description = "Email already used by another contact")
+    })
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateContact(@PathVariable Long id,
-                                           @Valid @RequestBody Contact contact) {
-        try {
-            Contact updated = contactService.updateContact(id, contact);
-            return ResponseEntity.ok(updated);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        }
+    public ResponseEntity<ContactResponseDTO> updateContact(
+            @PathVariable Long id,
+            @Valid @RequestBody ContactRequestDTO dto) {
+        return ResponseEntity.ok(contactService.updateContact(id, dto));
     }
 
-    // -------------------------------------------------------
-    // DELETE BY ID  ->  DELETE /api/contacts/{id}
-    // -------------------------------------------------------
+    @Operation(summary = "Delete a contact by ID")
+    @ApiResponses({
+            @ApiResponse(responseCode = "204", description = "Contact deleted successfully"),
+            @ApiResponse(responseCode = "404", description = "Contact not found")
+    })
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteContact(@PathVariable Long id) {
-        try {
-            String message = contactService.deleteContact(id);
-            return ResponseEntity.ok(message);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        }
+    public ResponseEntity<Void> deleteContact(@PathVariable Long id) {
+        contactService.deleteContact(id);
+        return ResponseEntity.noContent().build();
     }
 
-    // -------------------------------------------------------
-    // DELETE ALL  ->  DELETE /api/contacts
-    // -------------------------------------------------------
+    @Operation(summary = "Delete all contacts", description = "Permanently removes every contact from the database.")
+    @ApiResponse(responseCode = "204", description = "All contacts deleted")
     @DeleteMapping
-    public ResponseEntity<String> deleteAllContacts() {
-        String message = contactService.deleteAllContacts();
-        return ResponseEntity.ok(message);
+    public ResponseEntity<Void> deleteAllContacts() {
+        contactService.deleteAllContacts();
+        return ResponseEntity.noContent().build();
     }
 }
