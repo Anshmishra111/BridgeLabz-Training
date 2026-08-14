@@ -1,0 +1,36 @@
+# =====================================================================
+# application.yml  — Shared / base configuration
+# Profile-specific overrides live in application-dev.yml / application-prod.yml
+# Activate a profile:  --spring.profiles.active=dev  (or prod)
+# =====================================================================
+
+spring:
+  application:
+    name: ContactApp
+
+  # Profile activation default (override on command line or env var)
+  profiles:
+    active: dev
+
+  # Jackson — serialize LocalDateTime as ISO-8601 strings
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    time-zone: UTC
+
+server:
+  port: 8080
+  error:
+    # Do not expose stack traces in error responses
+    include-stacktrace: never
+    include-message: always
+
+# Springdoc / Swagger UI
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: alpha
+    tags-sorter: alpha
+    try-it-out-enabled: true
