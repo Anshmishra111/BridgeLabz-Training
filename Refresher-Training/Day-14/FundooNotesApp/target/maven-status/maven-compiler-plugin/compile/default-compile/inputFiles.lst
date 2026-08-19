@@ -1,0 +1,13 @@
+C:\Users\anshm\FundooNotesApp\src\main\java\com\fundoonotes\entity\User.java
+C:\Users\anshm\FundooNotesApp\src\main\java\com\fundoonotes\exception\GlobalExceptionHandler.java
+C:\Users\anshm\FundooNotesApp\src\main\java\com\fundoonotes\service\UserService.java
+C:\Users\anshm\FundooNotesApp\src\main\java\com\fundoonotes\controller\AuthController.java
+C:\Users\anshm\FundooNotesApp\src\main\java\com\fundoonotes\controller\NoteController.java
+C:\Users\anshm\FundooNotesApp\src\main\java\com\fundoonotes\repository\UserRepository.java
+C:\Users\anshm\FundooNotesApp\src\main\java\com\fundoonotes\dto\RegisterRequest.java
+C:\Users\anshm\FundooNotesApp\src\main\java\com\fundoonotes\security\JwtAuthenticationFilter.java
+C:\Users\anshm\FundooNotesApp\src\main\java\com\fundoonotes\dto\AuthResponse.java
+C:\Users\anshm\FundooNotesApp\src\main\java\com\fundoonotes\dto\LoginRequest.java
+C:\Users\anshm\FundooNotesApp\src\main\java\com\fundoonotes\security\JwtUtil.java
+C:\Users\anshm\FundooNotesApp\src\main\java\com\fundoonotes\config\SecurityConfig.java
+C:\Users\anshm\FundooNotesApp\src\main\java\com\fundoonotes\FundooNotesApplication.java
