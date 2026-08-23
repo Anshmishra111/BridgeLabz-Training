@@ -24,6 +24,10 @@ The goal of this training is to strengthen my fundamentals and build practical a
 | Day 10 | Dependency Injection & H2 | Contacts App + Employee Payroll App |
 | Day 11 | Spring Services, JPA & JDBC | Employee Payroll App |
 | Day 12 | Spring Bean Scopes, Logging, Maven & Postman | Employee Payroll App + Address Book App |
+| Day 13 | Spring Security & JWT | Fundoo Notes User Management |
+| Day 14 | Authorization & JPA Relationships | Fundoo Notes Notes Management |
+| Day 15 | Organisation, Search & Tags | Fundoo Notes Organisation |
+| Day 16 | JMS & Redis Caching | Fundoo Notes Async + Caching |
 
 ---
 
@@ -551,17 +555,20 @@ Controller → Service → DAO / Repository → Database
 ### Layer Responsibilities
 
 **Controller**
+
 - Handles HTTP input
 - Calls Service methods
 - Returns HTTP responses
 
 **Service**
+
 - Contains business logic
 - Handles validation
 - Coordinates repositories
 - Owns transaction boundaries
 
 **DAO / Repository**
+
 - Handles database access
 - Contains SQL or JPA logic
 
@@ -747,137 +754,962 @@ Implemented:
 
 ---
 
-# 🗂️ Repository Structure
+# 📅 Day 13 — Spring Security & JWT Authentication
+
+## Overview
+
+Started advanced backend security with the **Fundoo Notes Application**.
+
+### Key Topics
+
+- Spring Security
+- Authentication
+- Authorization
+- SecurityFilterChain
+- JWT
+- BCrypt
+- User Registration
+- User Login
+- Stateless Authentication
+
+### Authentication
+
+Authentication answers:
+
+> Who are you?
+
+Example:
+
+Email + Password → User Identity
+
+### Authorization
+
+Authorization answers:
+
+> What are you allowed to access?
+
+---
+
+## Spring Security Filter Chain
+
+Request flow:
+
+Client → Security Filter Chain → Controller
+
+Protected requests are checked before reaching the Controller.
+
+### Important Security Configuration
+
+- `SecurityFilterChain`
+- `HttpSecurity`
+- `permitAll()`
+- `authenticated()`
+- `SessionCreationPolicy.STATELESS`
+
+### Public Endpoints
+
+```text
+/auth/register
+/auth/login
+
+JWT
+
+JWT = JSON Web Token
+
+Flow:
+
+Login → Verify Credentials → Generate JWT → Client Stores JWT → JWT Sent with Future Requests
+
+JWT structure:
+
+HEADER.PAYLOAD.SIGNATURE
+Header
+
+Contains token metadata such as algorithm and token type.
+
+Payload
+
+Contains claims such as:
+
+User ID
+Email
+Issued time
+Expiration
+Signature
+
+Verifies token integrity.
+
+Important
+
+JWT is signed, not encrypted.
+
+Sensitive information should not be stored in the payload.
+
+BCrypt
+
+Passwords should never be stored as plain text.
+
+Flow:
+
+Password → BCrypt → Hash → Database
+
+Password verification:
+
+Entered Password
+       ↓
+BCrypt.matches()
+       ↓
+Stored Hash
+User Registration Flow
+POST /auth/register
+        ↓
+Controller
+        ↓
+Service
+        ↓
+Check Email
+        ↓
+BCrypt Password
+        ↓
+Save User
+        ↓
+Generate JWT
+        ↓
+Return Response
+User Login Flow
+POST /auth/login
+        ↓
+Controller
+        ↓
+Service
+        ↓
+Find User
+        ↓
+BCrypt.matches()
+        ↓
+Generate JWT
+        ↓
+Return JWT
+Technologies
+
+Java Spring Boot Spring Security JWT BCrypt Spring Data JPA MySQL/H2 Maven
+
+📅 Day 14 — Authorization & JPA Relationships
+Overview
+
+Extended the Fundoo Notes application with JWT validation, authorization, ownership security and JPA relationships.
+
+Key Topics
+JWT Validation
+OncePerRequestFilter
+SecurityContextHolder
+Ownership Authorization
+IDOR Prevention
+@ManyToOne
+@OneToMany
+@JoinColumn
+mappedBy
+LAZY Fetching
+EAGER Fetching
+LazyInitializationException
+Notes Management
+JWT Validation
+
+Every protected request contains:
+
+Authorization: Bearer <JWT>
+
+Flow:
+
+Request
+   ↓
+JWT Filter
+   ↓
+Validate Token
+   ↓
+Extract User ID
+   ↓
+SecurityContextHolder
+   ↓
+Controller
+OncePerRequestFilter
+
+Used to run JWT validation once for each HTTP request.
+
+HTTP Request
+     ↓
+OncePerRequestFilter
+     ↓
+JWT Validation
+     ↓
+SecurityContext
+     ↓
+Controller
+SecurityContextHolder
+
+Stores authentication information for the current request.
+
+Example:
+
+JWT
+ ↓
+Filter
+ ↓
+SecurityContextHolder
+ ↓
+Authenticated User
+Ownership Authorization
+
+A user should only access their own notes.
+
+Bad approach:
+
+GET /notes?userId=2
+
+A malicious user could change the ID.
+
+Better approach:
+
+JWT
+ ↓
+Authenticated User ID
+ ↓
+Ownership Query
+ ↓
+User's Notes Only
+IDOR
+
+IDOR = Insecure Direct Object Reference
+
+Example:
+
+User A → /notes/10
+User A changes URL → /notes/20
+
+If Note 20 belongs to User B, the API must reject the request.
+
+Ownership should be verified in the backend.
+
+User → Note Relationship
+
+One user can have many notes.
+
+User 1
+   |
+   +---- Note 1
+   +---- Note 2
+   +---- Note 3
+
+Relationship:
+
+User 1 : N Note
+@ManyToOne
+
+Each Note belongs to one User.
+
+@ManyToOne
+@JoinColumn(name = "user_id")
+private User owner;
+@OneToMany
+
+One User can have many Notes.
+
+@OneToMany(
+    mappedBy = "owner",
+    cascade = CascadeType.ALL,
+    orphanRemoval = true
+)
+private List<Note> notes;
+@JoinColumn
+
+Defines the foreign key column.
+
+@JoinColumn(name = "user_id")
+
+Database:
+
+NOTE
+----------------
+note_id
+title
+content
+user_id
+mappedBy
+
+Indicates that another entity owns the relationship.
+
+mappedBy = "owner"
+
+The Note.owner field owns the foreign key.
+
+LAZY vs EAGER
+LAZY
+
+Related data loads only when accessed.
+
+User loaded
+   ↓
+Notes not loaded
+   ↓
+getNotes()
+   ↓
+Notes loaded
+EAGER
+
+Related data loads immediately.
+
+LazyInitializationException
+
+Can occur when a LAZY relationship is accessed after the persistence context/session is closed.
+
+Solutions include:
+
+Accessing data within the transaction
+Using suitable JOIN FETCH queries
+Notes Management
+
+Implemented ownership-based Notes CRUD.
+
+Example repository concept:
+
+findByNoteIdAndOwner(noteId, owner)
+
+This ensures both:
+
+Note exists
+AND
+Note belongs to authenticated user
+Technologies
+
+Java Spring Boot Spring Security JWT Spring Data JPA Hibernate MySQL/H2 Maven
+
+📅 Day 15 — Organisation, Search & Tags
+Overview
+
+Extended Fundoo Notes with note organization and advanced search features.
+
+Key Topics
+Active Notes
+Archived Notes
+Trashed Notes
+Pinned Notes
+Note State
+Enum
+Search
+Filters
+Tags
+Specifications
+Dynamic Queries
+Many-to-Many Relationships
+Note State
+
+Instead of multiple independent booleans, note status can be represented using an enum.
+
+ACTIVE
+ARCHIVED
+TRASHED
+
+Example:
+
+public enum NoteState {
+    ACTIVE,
+    ARCHIVED,
+    TRASHED
+}
+@Enumerated(EnumType.STRING)
+
+Stores enum values as readable strings.
+
+ACTIVE
+ARCHIVED
+TRASHED
+
+This is preferable to ordinal values such as:
+
+0
+1
+2
+
+because changing enum order does not change the meaning of existing database values.
+
+Note Operations
+Archive
+ACTIVE
+  ↓
+ARCHIVED
+Trash
+ACTIVE
+  ↓
+TRASHED
+Restore
+ARCHIVED / TRASHED
+        ↓
+      ACTIVE
+Pin
+ACTIVE
+  ↓
+PINNED
+
+Trashed notes should not be pinnable.
+
+PATCH
+
+PATCH is suitable when only part of a resource changes.
+
+Examples:
+
+PATCH /notes/{id}/archive
+PATCH /notes/{id}/trash
+PATCH /notes/{id}/restore
+PATCH /notes/{id}/pin
+Search & Filtering
+
+Examples:
+
+GET /notes
+GET /notes?state=archived
+GET /notes?state=trashed
+GET /notes?pinned=true
+
+Search can support:
+
+Title
+State
+Tag
+Multiple filters together
+JPA Specification
+
+When many optional search parameters exist, creating a repository method for every combination becomes difficult.
+
+Example combinations:
+
+Title
+Tag
+State
+
+Title + Tag
+Title + State
+Tag + State
+
+Title + Tag + State
+
+Specifications allow dynamic query construction.
+
+Repository:
+
+public interface NoteRepository
+        extends JpaRepository<Note, Integer>,
+        JpaSpecificationExecutor<Note> {
+}
+
+Flow:
+
+Search Request
+      ↓
+Optional Filters
+      ↓
+Specification
+      ↓
+Predicates
+      ↓
+Database Query
+Owner Predicate
+
+Every Notes query should be scoped to the authenticated user.
+
+Current User
+      +
+Search Filters
+      ↓
+Specification
+      ↓
+User's Notes Only
+
+This prevents users from seeing another user's notes.
+
+Note & Tag Relationship
+
+One Note can have many Tags.
+
+One Tag can belong to many Notes.
+
+Therefore:
+
+Note M : N Tag
+@ManyToMany
+
+Example:
+
+@ManyToMany
+@JoinTable(
+    name = "note_tags",
+    joinColumns =
+        @JoinColumn(name = "note_id"),
+    inverseJoinColumns =
+        @JoinColumn(name = "tag_id")
+)
+private Set<Tag> tags;
+Junction Table
+
+The relationship can be represented using:
+
+note_tags
+----------------
+note_id
+tag_id
+
+Example:
+
+Note 1 → Tag 1
+Note 1 → Tag 2
+Note 2 → Tag 1
+Tag Entity
+@Entity
+public class Tag {
+
+    @Id
+    @GeneratedValue(
+        strategy = GenerationType.IDENTITY
+    )
+    private int tagId;
+
+    @Column(
+        nullable = false,
+        unique = true
+    )
+    private String name;
+}
+Tag Search
+
+Example:
+
+GET /notes?tag=urgent
+
+The query should also include the authenticated user.
+
+Technologies
+
+Java Spring Boot Spring Data JPA Hibernate Specification MySQL/H2 Maven
+
+📅 Day 16 — JMS Asynchronous Messaging & Redis Caching
+Overview
+
+Day 16 introduced two advanced backend concepts:
+
+JMS Asynchronous Messaging
+Redis Caching
+
+These solve two different backend problems.
+
+Problem 1 — Slow Background Operations
+
+Example:
+
+Forgot Password
+      ↓
+Generate Reset Token
+      ↓
+Send Email
+      ↓
+Response
+
+Email can take significant time.
+
+The HTTP request should not always wait for the external email operation.
+
+Solution
+
+Use asynchronous messaging.
+
+Producer
+   ↓
+JMS Queue
+   ↓
+Consumer
+JMS
+
+JMS = Java Message Service
+
+JMS provides a standard way to send and receive messages asynchronously.
+
+Basic architecture:
+
+Producer
+    ↓
+Queue
+    ↓
+Consumer
+Producer
+
+Producer sends the message.
+
+Example concept:
+
+jmsTemplate.convertAndSend(
+    "password-reset-queue",
+    message
+);
+JmsTemplate
+
+Used to send messages to a JMS destination.
+
+Application
+    ↓
+JmsTemplate
+    ↓
+JMS Queue
+Consumer
+
+Consumer receives messages.
+
+@JmsListener(
+    destination = "password-reset-queue"
+)
+public void handleMessage(
+        String message) {
+    
+    // Process message
+}
+@JmsListener
+
+Marks a method as a JMS message listener.
+
+It listens for messages from a queue.
+
+Asynchronous Forgot Password Flow
+POST /auth/forgot-password
+          ↓
+Generate Reset Token
+          ↓
+JMS Producer
+          ↓
+Password Reset Queue
+          ↓
+HTTP Response
+
+Meanwhile:
+
+Password Reset Queue
+          ↓
+JMS Consumer
+          ↓
+Email Service
+          ↓
+Email Sent
+Synchronous vs Asynchronous
+Synchronous
+Request
+ ↓
+Generate Token
+ ↓
+Send Email
+ ↓
+Wait
+ ↓
+Response
+Asynchronous
+Request
+ ↓
+Generate Token
+ ↓
+Queue Message
+ ↓
+Response
+
+Background:
+Queue
+ ↓
+Consumer
+ ↓
+Send Email
+When to Use JMS
+
+Good use cases:
+
+Email
+Notifications
+Reminders
+Background Reports
+Long-running background tasks
+
+Avoid asynchronous processing when the original request immediately needs the result.
+
+Redis
+
+Redis is an in-memory key-value data store.
+
+In Day 16 it is used as a shared cache for JWT validation.
+
+Why Redis?
+
+JWT validation may happen repeatedly:
+
+Request 1 → Validate JWT
+Request 2 → Validate JWT
+Request 3 → Validate JWT
+Request 4 → Validate JWT
+
+Caching can reduce repeated validation work.
+
+Local Cache Problem
+
+A local Java cache belongs to one server.
+
+Example:
+
+Load Balancer
+     ↓
+Server A
+Server B
+Server C
+
+Server A's local cache is not automatically available to Server B.
+
+Redis Shared Cache
+             Redis
+           /   |   \
+          /    |    \
+     Server A Server B Server C
+
+All application instances can access the shared cache.
+
+Redis Cache Flow
+Request
+   ↓
+Check Redis
+   ↓
+Cache HIT?
+   ├── YES → Use Cached Result
+   │
+   └── NO
+         ↓
+    Validate JWT
+         ↓
+    Store Result
+         ↓
+    Return Result
+Cache Hit
+Request
+ ↓
+Redis
+ ↓
+Found
+ ↓
+Use Cached Result
+Cache Miss
+Request
+ ↓
+Redis
+ ↓
+Not Found
+ ↓
+JWT Validation
+ ↓
+Store Result
+ ↓
+Return Result
+TTL
+
+TTL = Time To Live
+
+Defines how long cached data remains valid.
+
+Example:
+
+JWT lifetime = 60 seconds
+Cache TTL = 60 seconds or less
+
+Important:
+
+Cache TTL <= JWT remaining lifetime
+
+The cache must not outlive the token.
+
+Redis Configuration
+
+Example:
+
+spring.data.redis.host=localhost
+spring.data.redis.port=6379
+Redis Dependency
+spring-boot-starter-data-redis
+Day 16 Fundoo Notes Architecture
+Client
+   ↓
+Spring Security
+   ↓
+JWT Filter
+   ↓
+Redis Cache
+   ↓
+JWT Validation
+   ↓
+Controller
+   ↓
+Service
+   ↓
+Repository
+   ↓
+Database
+
+For asynchronous work:
+
+Controller
+   ↓
+Service
+   ↓
+JMS Producer
+   ↓
+JMS Queue
+   ↓
+JMS Consumer
+   ↓
+Email / Background Task
+Technologies
+
+Java Spring Boot Spring Security JWT JMS Redis Spring Data JPA Hibernate Maven
+
+🗂️ Repository Structure
 
 BridgeLabz-Training/
 
 └── Refresher-Training/
 
-    ├── Day-1/
-    │   └── SQL & DBMS
+├── Day-1/
+│   └── SQL & DBMS
 
-    ├── Day-2/
-    │   └── ER Diagram, Indexing & Normalization
+├── Day-2/
+│   └── ER Diagram, Indexing & Normalization
 
-    ├── Day-3/
-    │   └── Joins, Procedures & Triggers
+├── Day-3/
+│   └── Joins, Procedures & Triggers
 
-    ├── Day-4/
-    │   └── HealthClinicApp/
+├── Day-4/
+│   └── HealthClinicApp/
 
-    ├── Day-5/
-    │   ├── Servlet-Project/
-    │   └── Spring-Project/
+├── Day-5/
+│   ├── Servlet-Project/
+│   └── Spring-Project/
 
-    ├── Day-6/
-    │   └── Greetings-CRUD-Spring-MVC/
+├── Day-6/
+│   └── Greetings-CRUD-Spring-MVC/
 
-    ├── Day-7/
-    │   └── ContactApp/
+├── Day-7/
+│   └── ContactApp/
 
-    ├── Day-8/
-    │   ├── REST-Assured-Tests/
-    │   └── JSON-Server/
+├── Day-8/
+│   ├── REST-Assured-Tests/
+│   └── JSON-Server/
 
-    ├── Day-9/
-    │   └── Spring-Boot-Contacts-App/
+├── Day-9/
+│   └── Spring-Boot-Contacts-App/
 
-    ├── Day-10/
-    │   ├── Contacts-App/
-    │   └── Employee-Payroll-App/
+├── Day-10/
+│   ├── Contacts-App/
+│   └── Employee-Payroll-App/
 
-    ├── Day-11/
-    │   └── Employee-Payroll-App-JPA/
+├── Day-11/
+│   └── Employee-Payroll-App-JPA/
 
-    └── Day-12/
-        ├── Employee-Payroll-App/
-        └── Address-Book-App/
+├── Day-12/
+│   ├── Employee-Payroll-App/
+│   └── Address-Book-App/
 
----
+├── Day-13/
+│   └── Fundoo-Notes-Authentication/
 
-# 🛠️ Technologies & Tools
+├── Day-14/
+│   └── Fundoo-Notes-Authorization/
 
-### Programming
+├── Day-15/
+│   └── Fundoo-Notes-Organisation/
 
-- Java
-- SQL
+└── Day-16/
+    └── Fundoo-Notes-JMS-Redis/
+🛠️ Technologies & Tools
+Programming
+Java
+SQL
+Database
+MySQL
+H2
+Redis
+Backend & Web
+JDBC
+Servlets
+Spring
+Spring Boot
+Spring MVC
+Spring Security
+Spring Data JPA
+Hibernate
+REST API
+JSP
+Thymeleaf
+JMS
+Authentication & Security
+JWT
+BCrypt
+Spring Security
+SecurityFilterChain
+OncePerRequestFilter
+SecurityContextHolder
+Messaging & Caching
+JMS
+JmsTemplate
+JMS Listener
+Redis
+Redis Cache
+TTL
+Testing & API
+REST Assured
+JUnit
+JSON Server
+Postman
+Build & Server
+Maven
+Apache Tomcat
+HikariCP
+JdbcTemplate
+SLF4J
+Logback
+Development Tools
+IntelliJ IDEA
+VS Code
+MySQL Workbench
+Git
+GitHub
+🎯 Learning Progress
 
-### Database
+Day 1 ✅ DBMS & SQL
 
-- MySQL
-- H2
+Day 2 ✅ Database Design
 
-### Backend & Web
+Day 3 ✅ Advanced SQL
 
-- JDBC
-- Servlets
-- Spring
-- Spring Boot
-- Spring MVC
-- Spring Data JPA
-- Hibernate
-- REST API
-- JSP
-- Thymeleaf
+Day 4 ✅ JDBC Health Clinic Application
 
-### Testing & API
+Day 5 ✅ Servlet & Spring
 
-- REST Assured
-- JUnit
-- JSON Server
-- Postman
+Day 6 ✅ Greetings CRUD Application
 
-### Build & Server
+Day 7 ✅ ContactApp REST API
 
-- Maven
-- Apache Tomcat
-- HikariCP
-- JdbcTemplate
-- SLF4J
-- Logback
+Day 8 ✅ REST Assured, JSON Server & SDLC
 
-### Development Tools
+Day 9 ✅ Spring Boot Fundamentals & Contacts App
 
-- IntelliJ IDEA
-- VS Code
-- MySQL Workbench
-- Git
-- GitHub
+Day 10 ✅ Dependency Injection, H2 & Employee Payroll App
 
----
+Day 11 ✅ Spring Services, JPA & Spring JDBC
 
-# 🎯 Learning Progress
+Day 12 ✅ Bean Scopes, Logging, Maven & Postman
 
-Day 1  ✅  DBMS & SQL
+Day 13 ✅ Spring Security & JWT Authentication
 
-Day 2  ✅  Database Design
+Day 14 ✅ Authorization & JPA Relationships
 
-Day 3  ✅  Advanced SQL
+Day 15 ✅ Organisation, Search & Tags
 
-Day 4  ✅  JDBC Health Clinic Application
+Day 16 ✅ JMS Asynchronous Messaging & Redis Caching
 
-Day 5  ✅  Servlet & Spring
-
-Day 6  ✅  Greetings CRUD Application
-
-Day 7  ✅  ContactApp REST API
-
-Day 8  ✅  REST Assured, JSON Server & SDLC
-
-Day 9  ✅  Spring Boot Fundamentals & Contacts App
-
-Day 10 ✅  Dependency Injection, H2 & Employee Payroll App
-
-Day 11 ✅  Spring Services, JPA & Spring JDBC
-
-Day 12 ✅  Bean Scopes, Logging, Maven & Postman
-
----
-
-# 👨‍💻 Author
-
-### Himanshu Mishra
-
-**BridgeLabz Refresher Training**
-
-> Learning → Building → Testing → Improving 🚀
