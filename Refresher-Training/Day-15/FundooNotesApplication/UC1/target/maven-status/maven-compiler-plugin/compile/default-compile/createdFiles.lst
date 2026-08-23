@@ -1,0 +1,10 @@
+com\fundoo\fundoonotes\entity\ChecklistItem.class
+com\fundoo\fundoonotes\controller\HealthCheckController.class
+com\fundoo\fundoonotes\entity\Label.class
+com\fundoo\fundoonotes\entity\Note.class
+com\fundoo\fundoonotes\FundooNotesApplication.class
+com\fundoo\fundoonotes\entity\Note$NoteBuilder.class
+com\fundoo\fundoonotes\entity\ChecklistItem$ChecklistItemBuilder.class
+com\fundoo\fundoonotes\entity\User.class
+com\fundoo\fundoonotes\entity\Label$LabelBuilder.class
+com\fundoo\fundoonotes\entity\User$UserBuilder.class
